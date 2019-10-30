@@ -1,17 +1,25 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>App</h1>
+    <button @click="toggleDialog()">call dialog A</button>
+    <Dialog v-show="$root.toggleDialog">
+      <component :is="$root.currentDialog"></component>
+    </Dialog>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Dialog from './components/dialog.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Dialog
+  },
+  methods: {
+    toggleDialog() {
+      this.$root.openDialog('dialogA');
+    }
   }
 }
 </script>
